@@ -13,6 +13,6 @@
         <local:MyFileList />
     </Window.DataContext>
     <Grid>
-        <ListBox x:Name="lbSample" ItemsSource="{Binding FileNames}"/>
+        <ListView x:Name="lvSample" ItemsSource="{Binding FileNames}" MouseMove="lvSample_MouseMove" />
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Input;
 
 namespace DragDropAppToExplorerSample
 {
@@ -64,6 +65,20 @@ namespace DragDropAppToExplorerSample
                 e.Effects = DragDropEffects.None;
             }
             e.Handled = true;
+        }
+
+        private void lvSample_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                string path = lvSample.SelectedItem.ToString();
+                string[] paths = { path };
+
+                var dataObject = new DataObject();
+                dataObject.SetData(DataFormats.FileDrop, paths);
+
+                DragDrop.DoDragDrop(this, dataObject, DragDropEffects.Copy);
+            }
         }
     }
 }
